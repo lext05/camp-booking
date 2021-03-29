@@ -12,7 +12,6 @@ TIMEOUT_SECONDS = 60
 USERNAME = "YOUR USERNAME"
 PASSWORD = "YOUR PASSWORD"
 
-# this is all fridays in jul - sept. add/remove/modify as needed
 DATES = [
   ("Jul", "2nd"), 
   ("Jul", "9th"),
@@ -29,7 +28,6 @@ NUMNIGHTS = "2"
 
 PARTYSIZE = "2"
 
-# The names need to match exactly with the link names!
 CAMPGROUND = "Two Jack Lakeside"
 CAMPGROUNDAREAS = ["Two Jack Lakeside 1-13", "Two Jack Lakeside 14-35", "Two Jack Lakeside 36-74"]
 # ----------------------- End parameters ----------------------------------
@@ -43,7 +41,7 @@ def clickReserve(dateChoiceIdx, campgroundAreaIdx):
   reserveLinks = driver.find_elements_by_link_text("Reserve!")
   if(len(reserveLinks) == 0):
     return False
-  print(len(reserveLinks) + " available!")
+  print(str(len(reserveLinks)) + " available!")
   random.choice(reserveLinks).click()
   return True
 
@@ -71,7 +69,7 @@ def signIn():
 
 # main driver code
 driver = webdriver.Firefox()
-driver.implicitly_wait(1)
+driver.implicitly_wait(5)
 driver.get("https://reservation.pc.gc.ca/Banff/TwoJackLakeside?List")
 
 signIn()
@@ -85,8 +83,6 @@ campgroundAreaIdx = 0
 dateChoiceIdx = 0
 selectDropdown("selArrMth", DATES[0][0])
 selectDropdown("selArrDay", DATES[0][1])
-
-driver.close()
 
 while(True):
   while(clickReserve(dateChoiceIdx, campgroundAreaIdx) == False and dateChoiceIdx < len(DATES)):
