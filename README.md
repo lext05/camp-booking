@@ -5,4 +5,6 @@ python - https://www.python.org/downloads/
 
 selenium - `pip install selenium`
 
-firefox browser and web driver - https://github.com/mozilla/geckodriver/releases
+firefox browser
+
+firefox web driver in PATH- https://github.com/mozilla/geckodriver/releases
